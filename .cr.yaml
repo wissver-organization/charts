@@ -1,0 +1,5 @@
+github:
+  owner: wissver-organization
+  repository: charts
+charts:
+- path: ./charts
