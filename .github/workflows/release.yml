@@ -22,11 +22,12 @@ jobs:
         uses: helm/chart-releaser-action@v1
         with:
           config: .cr.yaml
+          token: ${{ secrets.CR_TOKEN }}  # Usando el secreto CR_TOKEN
 
       - name: Run Chart Releaser
         run: |
           cr index -o wissver-organization -r charts -c https://wissver-organization.github.io/charts
-          cr upload -o wissver-organization -r charts --token ${{ secrets.GITHUB_TOKEN }}
+          cr upload -o wissver-organization -r charts --token ${{ secrets.CR_TOKEN }}  # Usando el token correcto
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
