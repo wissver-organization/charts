@@ -5,6 +5,8 @@ on:
     types:
       - update_image
 
+permissions:
+  contents: write
 jobs:
   update_image:
     runs-on: ubuntu-latest
