@@ -5,10 +5,10 @@
 replicaCount: 2
 
 image:
-  repository: nginx
+  repository: 621849652964.dkr.ecr.us-east-1.amazonaws.com/wiss-be-mock-search-videos
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "dev6"
 
 imagePullSecrets: []
 nameOverride: "demodev"
