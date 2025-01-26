@@ -1,29 +1,38 @@
-name: Release Charts
+name: Update Image
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types:
+      - update_image
 
 jobs:
-  release:
-    permissions:
-      contents: write
+  update_image:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          fetch-depth: 0
+          aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-      - name: Configure Git
+
+      - name: Update the repository and tag in the file
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          # Actualizar el repository
+          sed -i "s#repository: .*#repository: 621849652964.dkr.ecr.us-east-1.amazonaws.com/${{ github.event.client_payload.repository_name }}#" ${{ github.event.client_payload.file_path }}
+          
+          # Actualizar el tag
+          sed -i "s#tag: .*#tag: \"${{ github.event.client_payload.tag }}\"#" ${{ github.event.client_payload.file_path }}
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ${{ github.event.client_payload.file_path }}
+          git commit -m "Update image tag in ${{ github.event.client_payload.file_path }}"
+          git push origin ${{ github.ref }}
