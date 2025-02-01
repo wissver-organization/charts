@@ -5,10 +5,10 @@
 replicaCount: 2
 
 image:
-  repository: 621849652964.dkr.ecr.us-east-1.amazonaws.com/wiss-be-mock-search-videos
+  repository: 621849652964.dkr.ecr.us-east-1.amazonaws.com/ms-0001-securityia
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "dev13"
+  tag: "dev2"
 
 imagePullSecrets: []
 nameOverride: "securityiadev"
