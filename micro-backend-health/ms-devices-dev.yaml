@@ -11,8 +11,8 @@ image:
   tag: "dev13"
 
 imagePullSecrets: []
-nameOverride: "securityiadev"
-fullnameOverride: "securityiadev"
+nameOverride: "msdevicesdev"
+fullnameOverride: "msdevicesdev"
 
 serviceAccount:
   # Specifies whether a service account should be created
