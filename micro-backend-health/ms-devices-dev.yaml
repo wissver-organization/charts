@@ -5,10 +5,10 @@
 replicaCount: 2
 
 image:
-  repository: 621849652964.dkr.ecr.us-east-1.amazonaws.com/mia-ms-users-001
+  repository: 621849652964.dkr.ecr.us-east-1.amazonaws.com/mia-ms-devices-001
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "dev3"
+  tag: "dev4"
 
 imagePullSecrets: []
 nameOverride: "msdevicesdev"
