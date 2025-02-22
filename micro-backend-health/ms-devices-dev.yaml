@@ -8,7 +8,7 @@ image:
   repository: 621849652964.dkr.ecr.us-east-1.amazonaws.com/mia-ms-devices-001
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "dev84"
+  tag: "dev85"
 
 imagePullSecrets: []
 nameOverride: "msdevicesdev"
